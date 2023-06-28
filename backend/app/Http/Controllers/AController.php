@@ -9,15 +9,16 @@ use Illuminate\Support\Facades\Validator;
 class AController extends Controller
 {
     //
-    public function createUser(Request $request) {
-        $validator = Validator::make($request->all(),[
+    public function createUser(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
             'username' => 'required|string|max:20',
             'email' => 'required|email|max:32',
             'password' => 'required|string|max: 32'
         ]);
 
         if ($validator->fails()) {
-            return response() -> json ([
+            return response()->json([
                 'status' => 422,
                 'accounts' => $validator->messages()
             ], 422);
@@ -25,7 +26,7 @@ class AController extends Controller
             $account = Accounts::create([
                 'username' => $request->username,
                 'email' => $request->email,
-                'password' => $request->password 
+                'password' => $request->password
 
             ]);
 
@@ -37,7 +38,7 @@ class AController extends Controller
                 ], 200);
             } else {
                 $notcreatedmsg = "Account NOT Added Successfully!";
-                return response()->json ([
+                return response()->json([
                     'status' => 500,
                     'accounts' => $notcreatedmsg
                 ], 500);
@@ -45,17 +46,18 @@ class AController extends Controller
         }
     }
 
-    public function displayAll() {
+    public function displayAll()
+    {
         $account = Accounts::all();
 
-        if($account->count() > 0 ) {
+        if ($account->count() > 0) {
             return $account;
-            } else {
-                $errormessage = "Account Not Found!";
-                return response()->json([
-                    'status' => 404,
-                    'account' => $errormessage
-                ], 404);
-            }
+        } else {
+            $errormessage = "Account Not Found!";
+            return response()->json([
+                'status' => 404,
+                'account' => $errormessage
+            ], 404);
+        }
     }
 }

@@ -2,6 +2,11 @@
 
 <template>
     <v-container class="fill-height">
+            <v-btn text class="white--text" to="/register">
+                <label>
+                  Register
+                </label>
+              </v-btn>
     <div class="login">
       <v-row class="" align="center" justify="center">
         <v-col col="12" sm="8" md="6">
@@ -12,30 +17,12 @@
           sm="6"
           md="3"
         >
-        <v-form @submit.prevent="submitForm">
-          <v-text-field label="Username" v-model="username" ref="username">
-            <!--  -->
-          </v-text-field>
-          <v-text-field label="Email" v-model="email" ref="email">
-            <!--  -->
-          </v-text-field>
-          <v-text-field label="Confirm Email" v-model="confirmedEmail" ref="confirmedEmail">
-            <!--  -->
-          </v-text-field>
-          <v-text-field label="Password" v-model="password" ref="password">
-            <!--  -->
-          </v-text-field>
-          <v-btn elevation="2" v-on:click="submit">
-            <label>Submit</label>
-          </v-btn>
-        </v-form>
+
         </v-col>
           </v-sheet>
         </v-col>          
       </v-row>
     </div>
-
-    <v-spacer></v-spacer>
 
     <v-container>
       <v-data-table
@@ -57,35 +44,14 @@
         </template>
     </v-data-table>
     </v-container>
-    
     </v-container>
+
   </template>
 
   <script>
     import axios from '../axiosdb';
 
     export default {
-        methods: {
-    submit() {
-    if (this.confirmedEmail != this.email) {
-      alert("Email Not Match");
-      return;
-    } 
-
-    const data = {                    
-      username: this.username,
-      email: this.email,
-      password: this.password
-    };
-    alert("Account added Successfully");
-    axios.post('../api/createUser', data);
-    
-  }
-},
-mounted() {
-  // Access the $refs property here
-  console.log(this.$refs);
-},
 
 data() {
     return {
@@ -120,7 +86,6 @@ mounted() {
         alert("Deleted Successfully! ", item);
     },
   },
-
 
 
 

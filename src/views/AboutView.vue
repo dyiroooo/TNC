@@ -7,7 +7,7 @@
       <v-btn text class="white--text" to="/home">Home</v-btn>
       <v-btn text class="teal darken-1--text">About</v-btn>
       <v-btn text class="white--text">Contact</v-btn>
-      <v-btn text class="white--text" to="/login">Login</v-btn>
+      <v-btn elevation="2" text class="white--text" to="/login">Login</v-btn>
     </v-app-bar>
   </div>
 </template>
